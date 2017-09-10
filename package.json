@@ -1,0 +1,11 @@
+{
+  "name": "td-aabb",
+  "version": "0.0.0",
+  "main": "AABB.js",
+  "author": "Norman Meier <norman.meier@tuta.io>",
+  "license": "MIT",
+  "dependencies": {
+    "gl-matrix": "^2.4.0",
+    "td-direction": "file:../td-direction"
+  }
+}
