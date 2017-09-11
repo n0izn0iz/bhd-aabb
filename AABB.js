@@ -2,8 +2,11 @@ import { vec2 } from "gl-matrix";
 import Direction from "td-direction";
 
 export default class AABB {
-  constructor({ position, size, bottomLeft = null, topRight }) {
-    if (bottomLeft !== null) {
+  constructor({ position, size, bottomLeft = null, topRight, clone = null }) {
+    if (clone !== null) {
+      this.bottomLeft = clone.bottomLeft;
+      this.topRight = clone.topRight;
+    } else if (bottomLeft !== null) {
       this.bottomLeft = bottomLeft;
       this.topRight = topRight;
     } else {
@@ -40,6 +43,12 @@ export default class AABB {
       case Direction.bottomLeftIndex:
         return new AABB({ bottomLeft: this.bottomLeft, topRight: position });
     }
+  }
+
+  set position(position) {
+    const aABB = new AABB({ position });
+    this.bottomLeft = aABB.bottomLeft;
+    this.topRight = aABB.topRight;
   }
 
   get position() {
