@@ -58,12 +58,38 @@ export default class AABB {
     );
   }
 
+  get topLeft() {
+    return vec2.fromValues(this.bottomLeft[0], this.topRight[1]);
+  }
+
+  get bottomRight() {
+    return vec2.fromValues(this.topRight[0], this.bottomLeft[1]);
+  }
+
   get halfSize() {
     return this.size / 2;
   }
 
   get size() {
     return this.topRight[0] - this.bottomLeft[0];
+  }
+
+  collideAABB(other) {
+    return (
+      this.containsPoint(other.bottomLeft) ||
+      this.containsPoint(other.topRight) ||
+      this.containsPoint(other.bottomRight) ||
+      this.containsPoint(other.topLeft)
+    );
+  }
+
+  containsPoint(point) {
+    return (
+      point[0] >= this.bottomLeft[0] &&
+      point[1] >= this.bottomLeft[1] &&
+      point[0] <= this.topRight[0] &&
+      point[1] <= this.topRight[1]
+    );
   }
 
   containsAABB(other) {
