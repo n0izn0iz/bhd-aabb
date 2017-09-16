@@ -23,7 +23,7 @@ export default class AABB {
       .topRight} }`;
   }
 
-  quartant(directionIndex) {
+  quadrant(directionIndex) {
     const position = this.position;
 
     switch (directionIndex) {
